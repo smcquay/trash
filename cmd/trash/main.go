@@ -15,9 +15,9 @@ func main() {
 	flag.Parse()
 	var r io.Reader
 	switch *algo {
-	case "low", "00", "0", "nil", "null", "zeros":
+	case "lo", "low", "00", "0", "nil", "null", "zeros":
 		r = trash.Zeros
-	case "ones", "ff", "hi":
+	case "ones", "ff", "hi", "high":
 		r = trash.Fs
 	case "trash", "caca":
 		r = trash.Reader
@@ -26,7 +26,7 @@ func main() {
 	case "lohi", "55", "5":
 		r = trash.LoHi
 	default:
-		fmt.Fprintf(os.Stderr, "unsupported algorithm: %v\ntry one of 'low', 'high', 'hilo', 'lohi', 'trash'\n", *algo)
+		fmt.Fprintf(os.Stderr, "unsupported algorithm: %v\ntry one of 'lo(w)', 'hi(gh)', 'hilo', 'lohi', 'trash'\n", *algo)
 		os.Exit(1)
 	}
 	if _, err := io.Copy(os.Stdout, r); err != nil {
