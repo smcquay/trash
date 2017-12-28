@@ -25,6 +25,8 @@ func main() {
 		r = trash.HiLo
 	case "lohi", "55", "5":
 		r = trash.LoHi
+	case "rand", "random":
+		r = trash.Random
 	default:
 		fmt.Fprintf(os.Stderr, "unsupported algorithm: %v\ntry one of 'lo(w)', 'hi(gh)', 'hilo', 'lohi', 'trash'\n", *algo)
 		os.Exit(1)

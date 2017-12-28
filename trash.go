@@ -3,6 +3,7 @@ package trash
 
 import (
 	"io"
+	"math/rand"
 	"time"
 )
 
@@ -12,6 +13,7 @@ func init() {
 	Fs = &reader{0xff}
 	HiLo = &reader{0xaa}
 	LoHi = &reader{0x55}
+	Random = rand.New(rand.NewSource(time.Now().UnixNano()))
 }
 
 // Reader provides a steady stream of trash (non-random bytes) when read from
@@ -28,6 +30,8 @@ var HiLo io.Reader
 
 // LoHi provides a steady stream of 0x55
 var LoHi io.Reader
+
+var Random io.Reader
 
 // TimeoutReader returns a reader that returns io.EOF after dur.
 func TimeoutReader(dur time.Duration) io.Reader {
